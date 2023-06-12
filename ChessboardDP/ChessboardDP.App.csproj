@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChessboardDP.Core\ChessboardDP.Core.csproj" />
+    <ProjectReference Include="..\ChessboardDP.Infrastructure\ChessboardDP.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

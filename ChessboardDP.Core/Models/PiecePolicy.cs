@@ -15,5 +15,6 @@ namespace ChessboardDP.Core.Models
     public class PiecePolicy
     {
         public PieceType Type { get; set; }
+        public int Size { get; set; }
     }
 }

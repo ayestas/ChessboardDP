@@ -1,5 +1,7 @@
-﻿using ChessboardDP.Core.Board;
+﻿using ChessboardDP.App;
+using ChessboardDP.Core.Board;
 using ChessboardDP.Core.Pieces;
+using ChessboardDP.Infrastructure;
 
 Board b = new Board(8);
 
@@ -23,6 +25,8 @@ if(k.PlaceNextMove(newCelda) == true)
 }
 */
 
+var engine = new PieceEngine(new FileTypeReader(), new PieceFactory(), new ConvertToPolicy());
+var p = engine.ChoosePiece();
 
 
 Console.ReadLine();

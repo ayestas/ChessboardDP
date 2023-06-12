@@ -1,4 +1,5 @@
-﻿using ChessboardDP.Core.Interfaces;
+﻿using ChessboardDP.Core.Board;
+using ChessboardDP.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,33 @@ namespace ChessboardDP.App
     {
         private readonly ITypeReader _reader;
         private readonly IPieceFactory _factory;
+        private readonly IToPolicy _policy;
 
-        public PieceEngine(ITypeReader reader, IPieceFactory factory)
+        public PieceEngine(ITypeReader reader, IPieceFactory factory, IToPolicy policy)
         {
             _reader = reader;
             _factory = factory;
+            _policy = policy;
         }
 
-        public void ChoosePiece()
+        public Core.Pieces.Piece ChoosePiece()
         {
-            string pice = _reader.Read();
-            Console.WriteLine(pice)
+            string piece = _reader.Read();
+            var policy = _policy.toPolicy(piece);
+
+            var finalPiece = _factory.Create(policy);
+
+            Board b = new Board(8);
+
+            Cell celda = b.setCurrentCell(2, 2);
+            celda.Occupied = true;
+
+            Console.WriteLine();
+
+            finalPiece.Movement(policy, b.Grid, celda);
+            b.printBoard();
+
+            return finalPiece;
         }
     }
 }

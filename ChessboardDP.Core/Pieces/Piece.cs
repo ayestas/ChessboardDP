@@ -6,16 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessboardDP.Core.Board;
 using ChessboardDP.Core.Interfaces;
+using ChessboardDP.Core.Models;
 
 namespace ChessboardDP.Core.Pieces
 {
     public abstract class Piece
     {
-        public int Size { get; set; }
+        public abstract Cell[,] Movement(PiecePolicy p, Cell[,] Grid, Cell currentCell);
 
-        public abstract Cell[,] Movement(Cell[,] Grid, Cell currentCell);
-
-        public virtual bool PlaceNextMove(Cell newCell)
+        public virtual bool PlaceNextMove(PiecePolicy p, Cell newCell)
         {
             if (newCell.Validate == false)
             {
