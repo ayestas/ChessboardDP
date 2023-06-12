@@ -56,9 +56,61 @@ namespace ChessboardDP.Core.Board
             Console.WriteLine("+---+---+---+---+---+---+---+---+");
         }
 
-        public Cell setCurrentCell(int r, int c)
+        public Cell setCurrentCell(char r, char c)
         {
-            return Grid[r, c];
+            int row = RowNumber(r);
+            int col = ColNumber(c);
+            return Grid[row, col];
+        }
+
+        int ColNumber(char c)
+        {
+            if (c == 'a')
+                return 0;
+            else if (c == 'b')
+                return 1;
+            else if (c == 'c')
+                return 2;
+            else if (c == 'd')
+                return 3;
+            else if (c == 'e')
+                return 4;
+            else if (c == 'f')
+                return 5;
+            else if (c == 'g')
+                return 6;
+            else if (c == 'h')
+                return 7;
+            else
+            {
+                Console.WriteLine("La columna " + c + " no existe, se asigna el default (c).");
+                return 2;
+            }
+        }
+
+        int RowNumber(char c)
+        {
+            if (c == '1')
+                return 0;
+            else if (c == '2')
+                return 1;
+            else if (c == '3')
+                return 2;
+            else if (c == '4')
+                return 3;
+            else if (c == '5')
+                return 4;
+            else if (c == '6')
+                return 5;
+            else if (c == '7')
+                return 6;
+            else if (c == '8')
+                return 7;
+            else
+            {
+                Console.WriteLine("La fila " + c + " no existe, se asigna el default (3).");
+                return 2;
+            }
         }
     }
 }

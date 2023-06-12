@@ -23,20 +23,29 @@ namespace ChessboardDP.App
 
         public Core.Pieces.Piece ChoosePiece()
         {
-            string piece = _reader.Read();
-            var policy = _policy.toPolicy(piece);
+            string moveText = _reader.Read();
+            char[] token = moveText.ToCharArray();
+            var policy = _policy.toPolicy(moveText);
 
             var finalPiece = _factory.Create(policy);
 
             Board b = new Board(8);
 
-            Cell celda = b.setCurrentCell(2, 2);
+            Cell celda = b.setCurrentCell(token[2], token[1]);
             celda.Occupied = true;
 
             Console.WriteLine();
 
             finalPiece.Movement(policy, b.Grid, celda);
-            b.printBoard();
+
+            Cell newCelda = b.setCurrentCell(token[5], token[4]);
+            newCelda.Occupied = true;
+
+            if (finalPiece.PlaceNextMove(policy, newCelda) == true)
+            {
+                finalPiece.Movement(policy, b.Grid, newCelda);
+                b.printBoard();
+            }
 
             return finalPiece;
         }
