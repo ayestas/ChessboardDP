@@ -112,5 +112,6 @@ namespace ChessboardDP.Core.Board
                 return 2;
             }
         }
+
     }
 }

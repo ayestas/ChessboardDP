@@ -10,6 +10,7 @@ namespace ChessboardDP.Core.Interfaces
     public interface IBoard
     {
         void printBoard();
-        Cell setCurrentCell(int r, int c);
+        Cell setCurrentCell(char r, char c);
+
     }
 }
